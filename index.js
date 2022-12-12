@@ -30,11 +30,11 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  The count variable in counter1 was defined in the block of scope while counter2 was not.
   2. Which of the two uses a closure? How can you tell?
-  
+  Counter1 uses a closure by having the function counter nested in counterMakers.
   3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+     counter2 be better?  Counter1 will allow us to add more function to be nested to make the counter more complex like round numbers.
 */
 
 // counter1 code
@@ -64,8 +64,8 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random() * Math.floor(3));
 }
 
 
@@ -83,8 +83,17 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inningsCB, innings){
+  let homeScore = 0;
+  let awayScore = 0;
+  for( let i = 0; i < innings; i++ ) {
+    homeScore = homeScore + inningsCB();
+    awayScore = awayScore + inningsCB();
+  } 
+  return {
+    Home: homeScore,
+    Away: awayScore
+  }
 }
 
 
@@ -101,8 +110,11 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningsCb) {
+  return{
+    Home: inningsCb(),
+    Away: inningsCb()
+  }
 
 }
 
